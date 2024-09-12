@@ -17,19 +17,16 @@ const StackLayout = () => {
         router.replace("/(protected)");
       }
     }
-  
   }, [user]);
   return (
     <Stack>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="(protected)" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="(protected)" options={{ headerShown: false }} />
     </Stack>
   );
 };
 
 export default function layout() {
- 
-
   return (
     <AppProvider>
       <StackLayout />

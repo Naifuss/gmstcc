@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({});
@@ -16,19 +17,19 @@ export function AuthProvider({ children }) {
   });
 
   const signIn = async ({ email, password }) => {
-    if (email === "super@gmail.com" && password === "Super123!") {
+    if (email === "super@email.com" && password === "Super123!") {
       setUser({
         autenticated: true,
-        user: { id: 1, name: "Super Usuário", email },
+        user: { id: 1, name: "Super", email },
         role: Role.SUPER,
       });
-    } else if (email === "adm@gmail.com" && password === "Adm123!") {
+    } else if (email === "adm@email.com" && password === "Adm123!") {
       setUser({
         autenticated: true,
         user: { id: 2, name: "Administrador", email },
         role: Role.ADM,
       });
-    } else if (email === "user@gmail.com" && password === "User123!") {
+    } else if (email === "user@email.com" && password === "User123!") {
       setUser({
         autenticated: true,
         user: { id: 3, name: "Usuário Comum", email },
@@ -45,10 +46,11 @@ export function AuthProvider({ children }) {
 
   const signOut = async () => {
     setUser({});
+
   };
 
   useEffect(() => {
-    console.log("AuthProvider:", user);
+    console.log("AuthProvider", user);
   }, [user]);
 
   return (
@@ -57,6 +59,7 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
